@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.main_div {
+  width: 100%;
+  height: 100vh;
+  background: rgba(251, 242, 225, 0.671);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.center_div {
+  width: 35%;
+  background: rgb(209, 212, 221);
+  height: 80vh;
+  border-radius: 15px;
+}
+h1 {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 50px;
+  margin-bottom: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+input {
+  text-align: center;
+  height: 30px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 500;
+  width: 60%;
+  border-bottom: 2px solid #8566aa;
+  outline: none;
+  margin-right: 20px;
+}
+.newBtn {
+  width: 50px;
+  height: 35px;
+  background-color: rgb(253, 85, 85);
+}
+.delete_Btn {
+  display: flex;
+}
+ol {
+  margin-top: 30px;
+}
+ol li {
+  padding-left: 0px;
+  font-size: 20px;
+  font-weight: 500;
+  min-height: 40px;
+  text-transform: capitalize;
+  list-style: none;
+}

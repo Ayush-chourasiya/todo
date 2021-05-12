@@ -1,25 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Button } from "@material-ui/core";
+import UserList from "./UserList";
+import "./All.css";
 
-function App() {
+const getLocalUsers = () => {
+  let list = localStorage.getItem("lists");
+  console.log("list");
+  if (list) {
+    return JSON.parse(localStorage.getItem("lists"));
+  } else {
+    return [];
+  }
+};
+
+const App = () => {
+  const [inputlist, setInputList] = useState("");
+  const [users, setUsers] = useState(getLocalUsers());
+
+  const itemEvent = (event) => {
+    setInputList(event.target.value);
+  };
+
+  const listOfUser = () => {
+    setUsers((oldUSer) => {
+      return [...oldUSer, inputlist];
+    });
+    setInputList("");
+  };
+
+  const deleteUsers = (id) => {
+    console.log("deleted");
+    setUsers((oldUSer) => {
+      return oldUSer.filter((arrElem, index) => {
+        return index !== id;
+      });
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem("lists", JSON.stringify(users));
+  }, [users]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main_div">
+      <div className="center_div">
+        <br />
+        <h1>UserList</h1>
+        <br />
+        <input
+          type="text"
+          placeholder="Add User"
+          value={inputlist}
+          onChange={itemEvent}
+        />
+        <button className="newBtn" onClick={listOfUser}>
+          +
+        </button>
+        <ol>
+          {users.map((userval, index) => {
+            return (
+              <UserList
+                key={index}
+                id={index}
+                text={userval}
+                onselect={deleteUsers}
+              />
+            );
+          })}
+        </ol>
+      </div>
     </div>
   );
-}
-
+};
 export default App;
